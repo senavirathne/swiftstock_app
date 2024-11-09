@@ -21,5 +21,22 @@ class ItemService {
     await _dbService.insertItem(item);
   }
 
+  Future<void> updateItem(Item item) async {
+    if (_dbService == null) {
+      // Handle the case when database is not available
+      return;
+    }
+    await _dbService.updateItem(item);
+  }
+  Future<void> deleteItem(int itemId) async {
+    if (_dbService == null) {
+      // Handle the case when database is not available
+      return;
+    }
+    await _dbService.deleteItem(itemId);
+  }
+
+
   // Other methods...
 }
+

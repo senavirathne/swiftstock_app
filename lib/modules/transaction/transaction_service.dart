@@ -1,18 +1,43 @@
 // modules/transaction/transaction_service.dart
+
 import 'package:swiftstock_app/services/service_locator.dart';
 import 'package:swiftstock_app/services/database_service.dart';
 import 'transaction_model.dart';
+import 'package:swiftstock_app/modules/item/item_model.dart';
 
 class TransactionService {
-  final DatabaseService? _dbService = locator<DatabaseService>();
+  final DatabaseService? _databaseService = locator<DatabaseService>();
 
-  Future<void> saveTransaction(Transaction transaction) async {
-    if (_dbService == null) {
-      // Handle absence of database
-      return;
+  Future<int> insertTransaction(TransactionModel transaction) async {
+    if (_databaseService == null) {
+      // Handle absence of database service
+      return -1;
     }
-    // Save transaction to database
+
+    try {
+      // Insert the transaction into the database
+      int transactionId =
+          await _databaseService!.insertTransaction(transaction);
+      return transactionId;
+    } catch (e) {
+      // Handle exceptions
+      print('Error inserting transaction: $e');
+      return -1;
+    }
   }
 
-  // Other methods...
+  Future<List<TransactionModel>> getAllTransactions() async {
+    if (_databaseService == null) {
+      return [];
+    }
+
+    try {
+      return await _databaseService!.getAllTransactions();
+    } catch (e) {
+      print('Error retrieving transactions: $e');
+      return [];
+    }
+  }
+
+  // Other transaction-related methods...
 }

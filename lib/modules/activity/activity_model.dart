@@ -1,13 +1,25 @@
-class Item {
-  final String name;
-  final double pricePerUnit;
-  final String unit; // e.g., 'kg', 'unit', etc.
-  final int frequency; // Used for sorting by frequency
+// modules/activity/activity_model.dart
 
-  Item({
-    required this.name,
-    required this.pricePerUnit,
-    required this.unit,
-    this.frequency = 0,
-  });
+class Activity {
+  int? id;
+  String description;
+  DateTime dateTime;
+
+  Activity({this.id, required this.description, required this.dateTime});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'description': description,
+      'dateTime': dateTime.toIso8601String(),
+    };
+  }
+
+  factory Activity.fromMap(Map<String, dynamic> map) {
+    return Activity(
+      id: map['id'],
+      description: map['description'],
+      dateTime: DateTime.parse(map['dateTime']),
+    );
+  }
 }

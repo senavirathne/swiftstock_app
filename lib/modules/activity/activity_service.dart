@@ -1,13 +1,30 @@
-class Item {
-  final String name;
-  final double pricePerUnit;
-  final String unit; // e.g., 'kg', 'unit', etc.
-  final int frequency; // Used for sorting by frequency
+// modules/activity/activity_service.dart
 
-  Item({
-    required this.name,
-    required this.pricePerUnit,
-    required this.unit,
-    this.frequency = 0,
-  });
+import 'package:flutter/foundation.dart';
+import 'package:swiftstock_app/services/service_locator.dart';
+import 'package:swiftstock_app/services/database_service.dart';
+import 'activity_model.dart';
+
+class ActivityService {
+  final DatabaseService? _dbService = locator<DatabaseService>();
+
+  Future<List<Activity>> getAllActivities() async {
+    if (_dbService == null) {
+      // Handle absence of database service
+      debugPrint('DatabaseService is not available. Returning empty activity list.');
+      return [];
+    }
+    return await _dbService!.getAllActivities();
+  }
+
+  Future<void> insertActivity(Activity activity) async {
+    if (_dbService == null) {
+      // Handle absence of database service
+      debugPrint('DatabaseService is not available. Cannot insert activity.');
+      return;
+    }
+    await _dbService!.insertActivity(activity);
+  }
+
+  logActivity(String s) {}
 }
