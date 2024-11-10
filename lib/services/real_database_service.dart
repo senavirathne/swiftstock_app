@@ -13,14 +13,11 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 
 class RealDatabaseService implements DatabaseService {
-  static final RealDatabaseService _instance = RealDatabaseService._privateConstructor();
-  // Expose the singleton instance with a different name to avoid conflict
-  DatabaseService get sharedInstance => _instance;
-  RealDatabaseService._privateConstructor();
-  factory RealDatabaseService() {
-    return _instance;
-  }
-
+  // RealDatabaseService._privateConstructor();
+  // static final RealDatabaseService _instance = RealDatabaseService._privateConstructor();
+  // factory RealDatabaseService() => _instance;
+  // // Expose the singleton instance with a different name to avoid conflict
+  // DatabaseService get sharedInstance => _instance;
   Database? _database;
   final _itemStore = intMapStoreFactory.store('items');
   final _transactionStore = intMapStoreFactory.store('transactions');

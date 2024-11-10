@@ -4,7 +4,7 @@ import 'package:swiftstock_app/modules/activity/activity_model.dart';
 import 'package:swiftstock_app/modules/transaction/transaction_model.dart';
 
 abstract class DatabaseService {
-  DatabaseService get sharedInstance;
+  // DatabaseService get sharedInstance;
   Future<void> init();
   Future<void> updateItemQuantityAfterSale(int itemId, double quantitySold);
 
