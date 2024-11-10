@@ -1,7 +1,7 @@
 // services/service_locator.dart
 import 'package:get_it/get_it.dart';
+import 'package:swiftstock_app/modules/activity/DefaultActivityService.dart';
 import 'package:swiftstock_app/modules/activity/activity_service.dart';
-import 'package:swiftstock_app/modules/item/database_helper.dart'; // del
 import 'package:swiftstock_app/modules/item/item_service.dart';
 import 'database_service.dart';
 import 'import_service.dart';
@@ -27,7 +27,7 @@ void setupLocator() {
   locator.registerLazySingleton<ItemService>(
     () => ItemService());
   locator.registerLazySingleton<ActivityService>(
-    () => ActivityService());
+    () => FeatureFlags.isActivityEnabled ? ActivityService(): DefaultActivityService());
   
   // Similarly, register other services
 }

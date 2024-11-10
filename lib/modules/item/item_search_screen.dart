@@ -43,9 +43,9 @@ class ItemSearchScreenState extends State<ItemSearchScreen> with RouteAware {
 
   void _loadSettings() async {
     dynamic useCustomKeyboardValue =
-        await locator<DatabaseService>().sharedInstance.getSetting('useCustomKeyboard');
+        await locator<DatabaseService>().getSetting('useCustomKeyboard');
     dynamic keyboardThresholdValue =
-        await locator<DatabaseService>().sharedInstance.getSetting('keyboardThreshold');
+        await locator<DatabaseService>().getSetting('keyboardThreshold');
     setState(() {
       _useCustomKeyboard = useCustomKeyboardValue ?? false;
       _keyboardThreshold = keyboardThresholdValue ?? 1;
@@ -88,7 +88,7 @@ class ItemSearchScreenState extends State<ItemSearchScreen> with RouteAware {
   }
 
   void _loadItems() async {
-  List<Item> items = await locator<DatabaseService>().sharedInstance.getAllItems();
+  List<Item> items = await locator<DatabaseService>().getAllItems();
 
   // Group items by displayName (keeping this unchanged)
   Map<String, GroupedItem> groupedItemsMap = {};
@@ -112,7 +112,7 @@ class ItemSearchScreenState extends State<ItemSearchScreen> with RouteAware {
   await Future.wait(groupedItems.map((groupedItem) async {
       String englishName = groupedItem.items.last.englishName;
       groupedItem.mostUsedQuantities =
-          await locator<DatabaseService>().sharedInstance.getMostUsedQuantitiesForEnglishName(englishName);
+          await locator<DatabaseService>().getMostUsedQuantitiesForEnglishName(englishName);
     }));
     
   setState(() {

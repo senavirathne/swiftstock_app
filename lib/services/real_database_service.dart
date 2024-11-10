@@ -14,14 +14,12 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 class RealDatabaseService implements DatabaseService {
   static final RealDatabaseService _instance = RealDatabaseService._privateConstructor();
-
+  // Expose the singleton instance with a different name to avoid conflict
+  DatabaseService get sharedInstance => _instance;
   RealDatabaseService._privateConstructor();
   factory RealDatabaseService() {
     return _instance;
   }
-
-  // Expose the singleton instance with a different name to avoid conflict
-  DatabaseService get sharedInstance => _instance;
 
   Database? _database;
   final _itemStore = intMapStoreFactory.store('items');
@@ -48,7 +46,7 @@ class RealDatabaseService implements DatabaseService {
     DatabaseFactory dbFactory;
     String dbPath;
 
-    if (isWeb) {
+    if (kIsWeb) {
       dbFactory = databaseFactoryWeb;
       dbPath = 'item_transaction.db';
     } else {
@@ -60,7 +58,6 @@ class RealDatabaseService implements DatabaseService {
 
     return await dbFactory.openDatabase(dbPath);
   }
-  bool get isWeb => kIsWeb;
 
   // Method to update item quantity after sale
   @override
@@ -149,8 +146,8 @@ class RealDatabaseService implements DatabaseService {
     Database db = await database;
     await _itemStore.delete(db);
     // Uncomment the following lines if you want to clear transactions and transaction items
-    // await _transactionStore.delete(db);
-    // await _transactionItemStore.delete(db);
+    await _transactionStore.delete(db);
+    await _transactionItemStore.delete(db);
   }
 
   @override
@@ -164,19 +161,6 @@ class RealDatabaseService implements DatabaseService {
       return item;
     }).toList();
   }
-
-  Future<Item?> getItemByEnglishName(String englishName) async {
-    Database db = await database;
-    var finder = Finder(filter: Filter.equals('englishName', englishName));
-    var recordSnapshot = await _itemStore.findFirst(db, finder: finder);
-    if (recordSnapshot != null) {
-      var item = Item.fromMap(recordSnapshot.value);
-      item.id = recordSnapshot.key;
-      return item;
-    }
-    return null;
-  }
-
   @override
   Future<void> updateItem(Item item) async {
     try {
