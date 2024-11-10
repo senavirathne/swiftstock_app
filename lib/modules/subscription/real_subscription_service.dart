@@ -244,6 +244,7 @@ hwIDAQAB
   }
 
   Future<String> _getWebDeviceFingerprint() async {
+  //  return await _getMobileDeviceFingerprint();
     try {
       String userAgent = html.window.navigator.userAgent ?? 'unknown_user_agent';
       String platform = html.window.navigator.platform ?? 'unknown_platform';

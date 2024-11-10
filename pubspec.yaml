@@ -32,35 +32,19 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # Essential dependencies
-  device_info_plus: ^10.1.2
-  get_it: ^7.2.0                # Dependency injection for modular architecture
-  sembast: ^3.2.0               # NoSQL database for storing app data
-  flutter_secure_storage: ^5.0.2 # Secure storage for sensitive data
-  csv: ^5.0.1                   # CSV utilities for importing/exporting data
-  package_info_plus: ^3.0.1
-
-  basic_utils: ^3.6.0           # Utility functions for cryptographic operations
-  crypto: ^3.0.1                # Cryptographic algorithms for hashing
-
-  # Conditional dependencies for web and mobile platforms
-  sembast_web: ^2.0.0            # Web version of Sembast for browser storage
-  path_provider: ^2.0.11         # Path provider for accessing the file system on mobile
-  flutter_local_notifications: ^18.0.0
-
-
-  # Firebase (optional) - if using Firebase for any backend services
-  # firebase_core: ^2.5.0          # Firebase core for initializing Firebase services
-  # firebase_auth: ^4.5.0          # Firebase Authentication
-  cloud_firestore: ^4.8.3 
-  # UI and theming
-  provider: ^6.1.0               # State management for UI
-  google_fonts: ^4.0.1           # Custom fonts
-
-  # Web-specific
-  flutter_web_plugins:
-    sdk: flutter
-  html: ^0.15.0                  # For web-specific functionality
+  get_it: ^7.2.0
+  sembast: ^3.1.1
+  sembast_web: ^2.4.0+4 # Latest version with null safety support
+  # path_provider_android: 2.0.11
+  path_provider: ^2.0.9 # For mobile platforms
+  csv: ^6.0.0
+  flutter_secure_storage: ^9.2.2
+  device_info_plus: ^11.1.0
+  # encrypt: ^5.0.1
+  # pointycastle: ^3.4.0
+  # convert: ^3.0.1
+  basic_utils: ^5.5.0
+  # shared_preferences: ^2.0.15
 
 dev_dependencies:
   build_runner: ^2.1.7
