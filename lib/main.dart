@@ -22,18 +22,17 @@ final RouteObserver<ModalRoute> routeObserver = RouteObserver<ModalRoute>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
-   // Fetch the SubscriptionService from the locator
+  // Fetch the SubscriptionService from the locator
   SubscriptionService subscriptionService = locator<SubscriptionService>();
   await locator<DatabaseService>().init();
   // Check if the subscription is active
-  bool isSubscriptionActive = await subscriptionService.isSubscriptionActive();
-  
+  bool isSubscriptionActive = true;// await subscriptionService.isSubscriptionActive();
+
   runApp(MyApp(isSubscriptionActive: isSubscriptionActive));
 }
 
 class MyApp extends StatelessWidget {
   final bool isSubscriptionActive;
-  
 
   const MyApp({Key? key, required this.isSubscriptionActive}) : super(key: key);
 
@@ -43,7 +42,7 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         title: 'Item Transaction App',
         routes: {
-          '/subscription': (context) => SubscriptionScreen(),
+          '/subscription':(context) => HomeScreen(),// (context) => SubscriptionScreen(),
           '/home': (context) => HomeScreen(),
           '/item_search': (context) => ItemSearchScreen(),
           '/subscription_info': (context) => SubscriptionInfoScreen(),
@@ -52,7 +51,6 @@ class MyApp extends StatelessWidget {
           '/add_custom_item': (context) => AddCustomItemScreen(),
           '/settings': (context) => SettingsScreen(),
           '/activity_log': (context) => ActivityLogScreen(),
-          // Other routes...
         },
         navigatorObservers: [routeObserver],
         home: SubscriptionChecker(child: HomeScreen()),
@@ -61,7 +59,6 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         title: 'Item Transaction App',
         routes: {
-          
           '/home': (context) => HomeScreen(),
           '/item_search': (context) => ItemSearchScreen(),
           '/subscription_info': (context) => SubscriptionInfoScreen(),

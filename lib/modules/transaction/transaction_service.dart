@@ -39,5 +39,13 @@ class TransactionService {
     }
   }
 
-  // Other transaction-related methods...
+  Future<void> updateItemFrequency(int i) async {
+    try {
+      await _databaseService!.updateItemFrequency(i);
+    } catch (e) {
+      print('Error updateItemFrequency: $e');
+      
+    }
+  }
+
 }

@@ -33,6 +33,12 @@ class PaymentScreenState extends State<PaymentScreen> {
     TransactionService transactionService = TransactionService();
     await transactionService.insertTransaction(transaction);
 
+    // Update item frequencies
+    for (var cartItem in cartItems) {
+      if (cartItem.item != null && cartItem.item!.id != null) {
+        await transactionService.updateItemFrequency(cartItem.item!.id!);
+      }
+    }
     // Clear the cart
     setState(() {
       cartItems.clear();

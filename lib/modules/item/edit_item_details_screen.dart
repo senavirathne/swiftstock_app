@@ -28,6 +28,14 @@ class _EditItemDetailsScreenState extends State<EditItemDetailsScreen> {
   late double _quantity;
   late DateTime? _expireDate;
 
+  // Discount parameters
+  double? _discountQuantityLevel1;
+  double? _discountQuantityLevel2;
+  double? _discountValueLevel1;
+  double? _discountValueLevel2;
+  double? _discountPercentLevel1;
+  double? _discountPercentLevel2;
+
   final ItemService? _itemService = locator<ItemService>();
   final ActivityService? _activityService = locator<ActivityService>();
 
@@ -43,6 +51,14 @@ class _EditItemDetailsScreenState extends State<EditItemDetailsScreen> {
     _quantity = widget.item.quantityLeft;
     _expireDate = widget.item.expireDate;
     _initialQuantity = widget.item.initialQuantity;
+
+    // Initialize discount parameters
+    _discountQuantityLevel1 = widget.item.discountQuantityLevel1;
+    _discountQuantityLevel2 = widget.item.discountQuantityLevel2;
+    _discountValueLevel1 = widget.item.discountValueLevel1;
+    _discountValueLevel2 = widget.item.discountValueLevel2;
+    _discountPercentLevel1 = widget.item.discountPercentLevel1;
+    _discountPercentLevel2 = widget.item.discountPercentLevel2;
   }
 
   void _confirmDeleteItem() async {
@@ -111,6 +127,13 @@ class _EditItemDetailsScreenState extends State<EditItemDetailsScreen> {
         initialQuantity: _initialQuantity,
         quantityLeft: _quantity,
         frequency: widget.item.frequency,
+        // Add discount parameters
+        discountQuantityLevel1: _discountQuantityLevel1,
+        discountQuantityLevel2: _discountQuantityLevel2,
+        discountValueLevel1: _discountValueLevel1,
+        discountValueLevel2: _discountValueLevel2,
+        discountPercentLevel1: _discountPercentLevel1,
+        discountPercentLevel2: _discountPercentLevel2,
       );
 
       await _itemService!.updateItem(updatedItem);
@@ -237,6 +260,130 @@ class _EditItemDetailsScreenState extends State<EditItemDetailsScreen> {
               onTap: _selectExpireDate,
             ),
             SizedBox(height: 16),
+            Text(
+              'Discount Parameters',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 8),
+            Table(
+              border: TableBorder.all(),
+              children: [
+                TableRow(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Discount Quantity',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Discount Value',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Discount Percent',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                    ),
+                  ],
+                ),
+                // Level 1 Row
+                TableRow(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        initialValue: _discountQuantityLevel1?.toString(),
+                        decoration:
+                            const InputDecoration(hintText: 'Qty Level 1'),
+                        keyboardType:
+                            const TextInputType.numberWithOptions(decimal: true),
+                        onSaved: (value) => _discountQuantityLevel1 =
+                            value != null && value.isNotEmpty
+                                ? double.parse(value)
+                                : null,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        initialValue: _discountValueLevel1?.toString(),
+                        decoration:
+                            const InputDecoration(hintText: 'Value Level 1'),
+                        keyboardType:
+                            const TextInputType.numberWithOptions(decimal: true),
+                        onSaved: (value) => _discountValueLevel1 =
+                            value != null && value.isNotEmpty
+                                ? double.parse(value)
+                                : null,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        initialValue: _discountPercentLevel1?.toString(),
+                        decoration:
+                            const InputDecoration(hintText: 'Percent Level 1'),
+                        keyboardType:
+                            const TextInputType.numberWithOptions(decimal: true),
+                        onSaved: (value) => _discountPercentLevel1 =
+                            value != null && value.isNotEmpty
+                                ? double.parse(value)
+                                : null,
+                      ),
+                    ),
+                  ],
+                ),
+                // Level 2 Row
+                TableRow(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        initialValue: _discountQuantityLevel2?.toString(),
+                        decoration:
+                            const InputDecoration(hintText: 'Qty Level 2'),
+                        keyboardType:
+                            const TextInputType.numberWithOptions(decimal: true),
+                        onSaved: (value) => _discountQuantityLevel2 =
+                            value != null && value.isNotEmpty
+                                ? double.parse(value)
+                                : null,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        initialValue: _discountValueLevel2?.toString(),
+                        decoration:
+                            const InputDecoration(hintText: 'Value Level 2'),
+                        keyboardType:
+                            const TextInputType.numberWithOptions(decimal: true),
+                        onSaved: (value) => _discountValueLevel2 =
+                            value != null && value.isNotEmpty
+                                ? double.parse(value)
+                                : null,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        initialValue: _discountPercentLevel2?.toString(),
+                        decoration:
+                            const InputDecoration(hintText: 'Percent Level 2'),
+                        keyboardType:
+                            const TextInputType.numberWithOptions(decimal: true),
+                        onSaved: (value) => _discountPercentLevel2 =
+                            value != null && value.isNotEmpty
+                                ? double.parse(value)
+                                : null,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
             ElevatedButton(
               onPressed: _saveItem,
               child: Text('Save Changes'),
@@ -247,4 +394,3 @@ class _EditItemDetailsScreenState extends State<EditItemDetailsScreen> {
     );
   }
 }
-
