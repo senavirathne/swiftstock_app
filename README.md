@@ -212,8 +212,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For any inquiries or support, please contact:
 
-- **Email**: support@itemtransactionapp.com
-- **GitHub Issues**: [Create an issue](https://github.com/yourusername/swiftstock_app/issues)
+- **Email**: madushika4@icloud.com
+- **GitHub Issues**: [Create an issue](https://github.com/Madushika-Pramod/swiftstock_app/issues)
 
 ---
 
