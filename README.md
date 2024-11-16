@@ -52,8 +52,8 @@ These instructions will help you set up and run the application on your local ma
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/item_transaction_app.git
-   cd item_transaction_app
+   git clone https://github.com/yourusername/swiftstock_app.git
+   cd swiftstock_app
    ```
 
 2. **Install Dependencies**
@@ -213,7 +213,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For any inquiries or support, please contact:
 
 - **Email**: support@itemtransactionapp.com
-- **GitHub Issues**: [Create an issue](https://github.com/yourusername/item_transaction_app/issues)
+- **GitHub Issues**: [Create an issue](https://github.com/yourusername/swiftstock_app/issues)
 
 ---
 
