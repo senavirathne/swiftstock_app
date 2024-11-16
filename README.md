@@ -1,6 +1,6 @@
-# Item Transaction App
+# Swiftstock App
 
-Welcome to the **Item Transaction App**! This application is designed with a primary focus on reducing the time taken to complete a transaction to the absolute minimum. By streamlining processes and optimizing the user interface, we've aimed to create an app that facilitates quick and efficient transactions, enhancing productivity and user satisfaction.
+Welcome to the **Swiftstock App**! This application is designed with a primary focus on reducing the time taken to complete a transaction to the absolute minimum. By streamlining processes and optimizing the user interface, we've aimed to create an app that facilitates quick and efficient transactions, enhancing productivity and user satisfaction.
 
 ## Table of Contents
 
@@ -217,4 +217,4 @@ For any inquiries or support, please contact:
 
 ---
 
-Thank you for using the **Item Transaction App**! We are committed to providing a tool that enhances efficiency and reduces transaction times significantly. Your feedback and support are invaluable to us.
+Thank you for using the **Swiftstock App**! We are committed to providing a tool that enhances efficiency and reduces transaction times significantly. Your feedback and support are invaluable to us.
