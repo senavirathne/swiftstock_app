@@ -25,7 +25,7 @@ class SettingsScreenState extends State<SettingsScreen> {
   final SettingsService _settingsService = locator<SettingsService>();
   final ImportService _importService = locator<ImportService>();
 
-  bool _useCustomKeyboard = false;
+  bool _useCustomKeyboard = true;
   int _keyboardThreshold = 1;
 
   @override
@@ -41,13 +41,14 @@ class SettingsScreenState extends State<SettingsScreen> {
         await _settingsService.getSetting('keyboardThreshold');
 
     setState(() {
-      _useCustomKeyboard = useCustomKeyboardValue ?? false;
+      _useCustomKeyboard = useCustomKeyboardValue ?? true;
       _keyboardThreshold = keyboardThresholdValue ?? 1;
       _keyboardThresholdController.text = _keyboardThreshold.toString();
 
       int numberOfModItems = _settingsService.getNumberOfModItems();
       _modItemsController.text = numberOfModItems.toString();
     });
+
   }
 
   void _saveUseCustomKeyboard(bool value) async {

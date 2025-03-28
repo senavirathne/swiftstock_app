@@ -28,7 +28,7 @@ class ItemSearchScreenState extends State<ItemSearchScreen> with RouteAware {
   bool _isProgrammaticallyClearing = false;
 
   // Variables for custom keyboard
-  bool _useCustomKeyboard = false;
+  bool _useCustomKeyboard =true;
   bool _showCustomKeyboard = true;
   int _keyboardThreshold = 1;
   List<String> _currentKeyboardKeys = [];
@@ -47,7 +47,7 @@ class ItemSearchScreenState extends State<ItemSearchScreen> with RouteAware {
     dynamic keyboardThresholdValue =
         await locator<DatabaseService>().getSetting('keyboardThreshold');
     setState(() {
-      _useCustomKeyboard = useCustomKeyboardValue ?? false;
+      _useCustomKeyboard = useCustomKeyboardValue ?? true;
       _keyboardThreshold = keyboardThresholdValue ?? 1;
     });
     if (_useCustomKeyboard) {
@@ -435,7 +435,8 @@ class ItemSearchScreenState extends State<ItemSearchScreen> with RouteAware {
                     itemCount: displayedGroupedItems.length,
                     itemBuilder: (context, index) {
                       final groupedItem = displayedGroupedItems[index];
-                      double? cartQuantity = _getCartItemQuantity(groupedItem);
+                      String? cartQuantity = _getCartItemQuantity(groupedItem)?.toString() ?? null;
+
 
                       if (!_quantityFocusNodes.containsKey(groupedItem)) {
                         final focusNode = FocusNode();

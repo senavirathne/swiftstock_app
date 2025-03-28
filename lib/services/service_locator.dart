@@ -21,7 +21,7 @@ void setupLocator() {
   locator.registerLazySingleton<SubscriptionService>(
     () => FeatureFlags.isSubscriptionEnabled ? RealSubscriptionService() : NullSubscriptionService());
   locator.registerLazySingleton<SettingsService>(
-    () => FeatureFlags.isSubscriptionEnabled ? RealSettingsService() : NullSettingsService());
+    () => RealSettingsService());
   locator.registerLazySingleton<ImportService>(
     () => RealImportService());
   locator.registerLazySingleton<ItemService>(

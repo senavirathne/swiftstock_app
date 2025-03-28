@@ -17,11 +17,19 @@ import 'modules/subscription/subscription_info_screen.dart';
 import '/modules/item/expiry_items_screen.dart';
 import 'modules/item/edit_items_screen.dart';
 
+import 'import_data.dart'; // <--- Added import
+import 'package:swiftstock_app/services/import_service.dart';
+
+
 final RouteObserver<ModalRoute> routeObserver = RouteObserver<ModalRoute>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupLocator();
+
+  final importService = locator<ImportService>();
+  await importService.importCsvData(sampleCsvData); // <--- Import triggered
+
   // Fetch the SubscriptionService from the locator
   SubscriptionService subscriptionService = locator<SubscriptionService>();
   await locator<DatabaseService>().init();
